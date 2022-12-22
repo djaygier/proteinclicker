@@ -54,8 +54,8 @@ upgrades =
     "scoop4": {upgrade:"scoop", price:50000, multiplier:2, foto:"scoop.webp", unlockAt: 50, bought:false, added:false},
     "scoop5": {upgrade:"scoop", price:500000, multiplier:3, foto:"scoop.webp", unlockAt: 70, bought:false, added:false},
     "scoop6": {upgrade:"scoop", price:2000000, multiplier:5, foto:"scoop.webp", unlockAt: 100, bought:false, added:false},
-    "scoop7": {upgrade:"scoop", price:5000000, multiplier:5, foto:"scoop.webp", unlockAt: 120, bought:false, added:false},
-    "scoop8": {upgrade:"scoop", price:50000000, multiplier:2, foto:"scoop.webp", unlockAt: 150, bought:false, added:false},
+    "scoop7": {upgrade:"scoop", price:50000000, multiplier:5, foto:"scoop.webp", unlockAt: 120, bought:false, added:false},
+    "scoop8": {upgrade:"scoop", price:200000000, multiplier:2, foto:"scoop.webp", unlockAt: 150, bought:false, added:false},
     
     "chef1": {upgrade:"chef", price:5000, multiplier:2, foto:"banana.webp", unlockAt: 10, bought:false, added:false},
     "chef2": {upgrade:"chef", price:150000, multiplier:2, foto:"pancake.webp", unlockAt: 35, bought:false, added:false},
