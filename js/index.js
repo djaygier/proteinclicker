@@ -97,6 +97,12 @@ async function loaded() {
             }
         }
     }
+    
+    // FIX SHINE ANIMATION
+    await delay(50)
+    document.documentElement.style.setProperty('--shine', "");
+    await delay(50)
+    document.documentElement.style.setProperty('--shine', "slide 3s linear infinite alternate");
 
     // ADD ALL PRODUCTS ELEMENTS
     for (const item in products) {
@@ -439,8 +445,6 @@ async function setShiny(product) {
     await delay(50)
     document.documentElement.style.setProperty('--shine', "");
     await delay(50)
-    document.documentElement.style.setProperty('--shine', "slide 3s linear infinite alternate");
-    await delay(100)
     document.documentElement.style.setProperty('--shine', "slide 3s linear infinite alternate");
 }
 
