@@ -89,7 +89,6 @@ function addUpgrade(item) {
 
 // A ASYNC LOADED FUNCTION
 async function loaded() {
-
     // ADD ALL UPGRADES ELEMENTS FOR START
     for (const item in upgrades) { 
         if (getUpgradeData(item, "added") == true) {
@@ -168,7 +167,14 @@ function saveCookies() {
     setCookie("proteinAdd", proteinAdd.toString())
 }
 
+firstClick = false
 async function clickProtein() {
+
+    if (firstClick == false) {
+        music.play()
+        firstClick = true
+    }
+
     protein += proteinAdd
     totalProtein += proteinAdd
     document.getElementById("clicker").style.animation = ""

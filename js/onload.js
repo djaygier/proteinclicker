@@ -26,7 +26,8 @@ let day = d.getDate();
 /// Settings
 // Audio
 const music = new Audio("media/music.mp3");
-music.play()
+music.autoplay = true
+music.loop = true
 music.volume = 0.1
 
 // Effects
