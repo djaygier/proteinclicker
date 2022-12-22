@@ -33,10 +33,6 @@
     <link rel="stylesheet" id="phone" href="">
 </head>
 <body onload="loaded(); cookiesLoop();">
-
-    <audio loop autoplay>
-        <source src="media/music.mp3" type="audio/mp3">
-    </audio>
     
     <left>
         <div class="particles"></div>
@@ -127,20 +123,20 @@
         <div class="big-text">GRAPHICS</div>
         <setting>
             <div class="text">Effects</div>
-            <select id="effects" name="effects">
+            <select onchange="changedSetting('effects')" id="effects" name="effects">
                 <option value="0">Off</option>
                 <option value="1">Low</option>
-                <option value="2">Medium</option>
+                <option value="2" selected>Medium</option>
                 <option value="3">High</option>
                 <option value="4">Ultra High</option>
             </select>
         </setting>
         <setting>
             <div class="text">Music</div>
-            <select id="music" name="music">
+            <select onchange="changedSetting('music')" id="music" name="music">
                 <option value="0">Off</option>
                 <option value="1">Low</option>
-                <option value="2">Medium</option>
+                <option value="2" selected>Medium</option>
                 <option value="3">High</option>
                 <option value="4">RIP</option>
             </select>

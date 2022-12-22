@@ -178,11 +178,28 @@ async function clickProtein() {
     
     updateCount()
 
-    clickEffect()
+    // Effects Low
+    if (effects >= 1) {
+        clickEffect()
+    }
 
-    animateBackground()
+    // Effects Medium (Default)
+    if (effects >= 2) {
+        animateBackground()
+        animateParticles()
+    }
 
-    animateParticles()
+    // Effects High
+    if (effects >= 3) {
+        animateBackground()
+        animateParticles()
+    }
+
+    // Effects Ultra high
+    if (effects >= 4) {
+        animateBackground()
+        animateParticles()
+    }
 }
 
 async function removeParticle(el) {
@@ -505,12 +522,22 @@ function selectNav(id, query) {
     document.querySelector(query).style.zIndex = "11"
 }
 
-function testOldVersion() {
-    products = 
-    {
-        "scoop": {name:"Scoop", price:10, amount:0, add:1},
-        "chef": {name:"Chef", price:150, amount:0, add:8},
-        "chickenfarm": {name:"Chicken farm", price:2500, amount:0, add:50},
-        "gym": {name:"Gym", price:10000, amount:0, add:100},
+function changedSetting(setting) {
+    const chosen = document.getElementById(setting).value
+
+    if (setting == "effects") {
+        effects = chosen
+    } else if (setting == "music") {
+        if (chosen == 0) {
+            music.volume = "0"
+        } else if (chosen == 1) {
+            music.volume = "0.05"
+        } else if (chosen == 2) {
+            music.volume = "0.1"
+        } else if (chosen == 3) {
+            music.volume = "0.2"
+        } else if (chosen == 4) {
+            music.volume = "1"
+        }
     }
 }

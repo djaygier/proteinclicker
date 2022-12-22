@@ -17,9 +17,21 @@ let upgrades = ""
 let products = ""
 let loadedFromSave = false
 
+
 const d = new Date();
 let month = d.getMonth()+1;
 let day = d.getDate();
+
+
+/// Settings
+// Audio
+const music = new Audio("media/music.mp3");
+music.play()
+music.volume = 0.1
+
+// Effects
+let effects = 2
+
 
 checkScreenSize()
 
