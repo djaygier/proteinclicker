@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>[BETA] Protein Clicker v0.3</title>
+
+    <meta name="description" content="This is a online game that is playable for free on almost every browser, the goal is to get as much protein as you can!">
+    <meta name="keywords" content="Protein, clicker, game, online game, free, no cost, online, proteine, addicting game,">
+    <meta name="author" content="Protein clicker">
+
+    <meta property="og:title" content="Protein Clicker">
+    <meta property="og:description" content="This is a online game that is playable for free on almost every browser, the goal is to get as much protein as you can!">
+    <meta property="og:image" content="media/scoop.webp">
+    <meta property="og:url" content="https://proteinclicker.com">
+
+    <meta name="twitter:title" content="Protein Clicker">
+    <meta name="twitter:description" content="This is a online game that is playable for free on almost every browser, the goal is to get as much protein as you can!">
+    <meta name="twitter:url" content="https://proteinclicker.com">
+    <meta name="twitter:card" content="Click for protein.">
+
+    <link rel="icon" type="image/x-icon" href="media/icon.ico?v=2">
+
+    <script src="js/functions.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/onload.js" defer></script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3385884790133871" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/stickman.css">
+    <link rel="stylesheet" id="phone" href="">
+</head>
+<body onload="loaded(); cookiesLoop();">
+
+    <audio loop autoplay>
+        <source src="media/music.mp3" type="audio/mp3">
+    </audio>
+    
+    <left>
+        <div class="particles"></div>
+        <div class="container">
+            <div class="amount">0</div>
+            <div class="amount-small">PROTEIN</div>
+            <img src="media/protein.webp" onclick="clickProtein()" id="clicker" alt="protein powder">
+            <div class="cps-amount">0</div>
+            <div class="per-second">PER SECOND</div>
+        </div>
+        <div class="container-bg"></div>
+    </left>
+    <middle>
+        <top>
+            <div class="body">
+                <div class="hat"></div>
+                <div class="voet links"></div>
+                <div class="voet rechts"></div>
+                <div class="onder-been links"></div>
+                <div class="onder-been rechts"></div>
+                <div class="boven-been links"></div>
+                <div class="boven-been rechts"></div>
+                <div class="chest"></div>
+                <div class="arm">
+                    <div class="boven-arm">
+                        <div class="bicep" id="left"></div>
+                        <div class="bicep" id="middle"></div>
+                        <div class="bicep" id="top"></div>
+                    </div>
+                    <div class="onder-arm"></div>
+                </div>
+
+                <mirror>
+                    <div class="arm">
+                        <div class="boven-arm">
+                            <div class="bicep" id="left"></div>
+                            <div class="bicep" id="middle"></div>
+                            <div class="bicep" id="top"></div>
+                        </div>
+                        <div class="onder-arm"></div>
+                    </div>
+                </mirror>
+
+
+                <div class="hoofd"></div>
+            </div>
+        </top>
+        <bottom>
+
+
+        </bottom>
+    </middle>
+
+    <right>
+        <top>
+            <ins class="adsbygoogle" style="display:block; width: 395px; height: 110px;" data-ad-format="fluid" data-ad-layout-key="-gu+o-2o-aq+u4" data-ad-client="ca-pub-3385884790133871" data-ad-slot="7289538949"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </top>
+        <bottom>
+        </bottom>
+    </right>
+
+    <nav>
+        <img
+            onclick="selectNav('home-icon', 'left')"
+            id="home-icon"
+            src="media/house.webp"
+            class="enable"
+            alt="icon">
+        <img
+            onclick="selectNav('gym-icon', 'middle')"
+            id="gym-icon"
+            src="media/gymicon.webp"
+            alt="icon">
+        <img
+            onclick="selectNav('upgrade-icon', 'right top')"
+            id="upgrade-icon"
+            src="media/upgrade.webp"
+            alt="icon">
+    </nav>
+
+    <button onclick="openPopup()" id="settings">
+        <img src="media/settings.webp" alt="settings">
+    </button>
+
+    <settings onclick="closePopup()">
+        
+    </settings>
+    <popup>
+        <div class="big-text">GRAPHICS</div>
+        <setting>
+            <div class="text">Effects</div>
+            <select id="cars" name="cars">
+                <option value="volvo">Off</option>
+                <option value="saab">Low</option>
+                <option value="fiat">Medium</option>
+                <option value="audi">High</option>
+                <option value="audi">Ultra High</option>
+            </select>
+        </setting>
+    </popup>
+
+</body>
+</html> 

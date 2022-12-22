@@ -1,0 +1,179 @@
+.body {
+    transform: scale(110%) ;
+    bottom: 305px;
+    width: 250px;
+    height: 500px;
+    display: block;
+    position: absolute;
+}
+
+.body > * {
+    background-color: var(--stickman);
+    position: absolute;
+}
+
+.hat {
+    background-color: transparent;
+    background-size: contain;
+    display: block;
+    z-index: 2;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    left: 50%;
+    bottom: 440px;
+    transform: translate(-64%);
+}
+
+.voet {
+    background-color: var(--stickman);
+    height: 5px;
+    width: 50px;
+    bottom: 0;
+    border-radius: 2px;
+}
+
+.voet.rechts {
+    right: 0;
+}
+
+
+.onder-been {
+    bottom: 0;
+    width: 5px;
+    height: 100px;
+}
+
+.onder-been.links {
+    left: 63px;
+    transform: rotate(20deg);
+}
+
+.onder-been.rechts {
+    right: 63px;
+    transform: rotate(-20deg);
+}
+
+.boven-been {
+    bottom: 90px;
+    width: 5px;
+    height: 85px;
+}
+
+.boven-been.links {
+    left: 100px;
+    transform: rotate(30deg);
+}
+
+.boven-been.rechts {
+    right: 100px;
+    transform: rotate(-30deg);
+}
+
+.chest {
+    width: 5px;
+    border-radius: 20px;
+    height: 230px;
+    bottom: 165px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+/* ARM */
+
+.boven-arm {
+    width: 5px;
+    height: 120px;
+    transform-origin: top center;
+}
+
+.onder-arm {
+    left: -55px;
+    top: 103px;
+    width: 5px;
+    height: 120px;
+    transform-origin: top center;
+}
+
+.arm {
+    transform-origin: top center;
+    height: 240px;
+    width: fit-content;
+    background-color: transparent;
+    display: block;
+    animation: armFlex forwards linear 0.8s;
+}
+
+.arm {
+    left: 122px;
+    bottom: 120px;
+}
+
+.arm > * {
+    border-radius: 10px;
+    position: absolute;
+    background-color: var(--stickman);
+}
+
+.boven-arm {
+    transform: rotate(25deg);
+}
+
+@keyframes armFlex {
+    to {
+        transform: rotate(68deg);
+    }
+}
+
+.onder-arm {
+    transform: rotate(5deg);
+    animation: onderArmFlex forwards 0.8s ease-in;
+}
+
+@keyframes onderArmFlex {
+    to {
+        transform: rotate(120deg) translateY(-5px);
+    }
+}
+
+mirror {
+    right: 122px;
+    transform: scalex(-1);
+    bottom: 120px;
+}
+
+.hoofd {
+    width: 70px;
+    height: 70px;
+    background: var(--stickman);
+    border: 5px solid var(--stickman);
+    border-radius: 50%;
+    bottom: 390px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.bicep {
+    bottom: 30%;
+    background-color: var(--stickman);
+    position: absolute;
+    height: 60px;
+    width: 0px;
+    border-radius: 5000px;
+    overflow: hidden;
+    transform: none;
+}
+
+#left {
+    bottom: 0;
+    transform: translatex(15px);
+    height: 30px;
+}
+
+#middle {
+    transform: translatex(0px);
+    bottom: 10%;
+    height: 110px;
+    left: -40px;
+}

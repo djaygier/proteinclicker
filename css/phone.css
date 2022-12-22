@@ -1,0 +1,148 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+
+.container {
+    height: calc(100vh - 30px);
+    margin-bottom: 30px;
+}
+
+.cps-amount {
+    width: fit-content;
+    height: fit-content;
+    top: -5px;
+    right: 30%;
+    font-size: 100px;
+}
+
+.cps-amount::after {
+    content: "G";
+    font-size: 60px;
+}
+
+.per-second {
+    width: fit-content;
+    height: fit-content;
+    right: 30%;
+    top: 80px;
+    font-size: 30px;
+}
+
+.amount {
+    font-size: 100px;
+    top: -5px;
+    left: 30%;
+    width: fit-content;
+    height: fit-content;
+}
+
+.amount-small {
+    width: fit-content;
+    height: fit-content;
+    left: 30%;
+    top: 80px;
+    font-size: 30px;
+}
+
+left {
+    z-index: 10;
+    background-color: var(--background);
+}
+
+left::after {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+}
+
+middle::after {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+}
+
+middle {
+    transition: 0.5s;
+    visibility: hidden;
+    z-index: 10;
+    width: 100%;
+    left: 0;
+}
+
+right top {
+    visibility: hidden;
+    transition: 0.5s;
+    z-index: 10;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    height: calc(100% - 110px);
+}
+
+right bottom {
+    visibility: hidden;
+    transition: 0.5s;
+    z-index: 10;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    height: calc(100% - 110px);
+}
+nav {
+    background-color: rgb(30, 30, 30);
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 12;
+    position: absolute;
+}
+
+nav img {
+    height: 45px;
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+nav img.enable {
+    filter: drop-shadow(0 0 2px rgb(255, 255, 255, 0.8));
+    opacity: 1;
+}
+
+
+@media (max-Width: 669px) {
+    .cps-amount {right: 22%; transform: scale(80%);}
+    .per-second {right: 22%; transform: scale(80%); top: 75px; padding-right: 2px;}
+    .amount {left: 22%; transform: scale(80%);}
+    .amount-small {left: 22%; transform: scale(80%); top: 75px; padding-left: 12px;}
+    #clicker { width: 320px;}
+}
+
+@media (max-Width: 469px) {
+    .cps-amount {right: 15%;}
+    .per-second {right: 15%;}
+    .amount {left: 15%;}
+    .amount-small {left: 15%;}
+    #clicker { width: 280px;}
+}
+
+@media (max-Width: 380px) {
+    .cps-amount {right: 10%;}
+    .per-second {right: 10%;}
+    .amount {left: 10%;}
+    .amount-small {left: 10%;}
+}
+
+#settings {
+    visibility: hidden;
+}
+
+settings {
+visibility: hidden;
+}
