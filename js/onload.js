@@ -1,6 +1,4 @@
 // protein background when clicking effect
-let maxEmojis = 20
-let visibleEmojis = 0 
 
 let protein = 0
 let proteinAdd = 1

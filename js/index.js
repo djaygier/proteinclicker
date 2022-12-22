@@ -180,8 +180,6 @@ async function clickProtein() {
 
     clickEffect()
 
-
-    animateBackground()
     animateBackground()
 
     animateParticles()
@@ -251,33 +249,27 @@ async function clickEffect() {
 
 
 async function animateBackground() {
-    if (visibleEmojis <= 50) {
-        var div = document.getElementsByClassName("container-bg")[0]
+    var div = document.getElementsByClassName("container-bg")[0]
 
-        // effect background add emoji
-        var img = document.createElement("img")
-        img.src = "../media/muscle.webp"
-        img.style.transform = "rotate(" + randomIntFromInterval(0, 360) + "deg)"
-        widthRandom = randomIntFromInterval(30, 90)
-        img.style.width = widthRandom + "px"
-        img.style.filter = "blur(" + (70-widthRandom)/10 + "px)"
+    // effect background add emoji
+    var img = document.createElement("img")
+    img.src = "../media/muscle.webp"
+    img.style.transform = "rotate(" + randomIntFromInterval(0, 360) + "deg)"
+    widthRandom = randomIntFromInterval(30, 90)
+    img.style.width = widthRandom + "px"
 
-        img.style.left = randomIntFromInterval(0, 705) + "px"
-        img.style.top = randomIntFromInterval(0, 1073) + "px"
-        img.className = "emoji"
-        div.append(img)
+    img.style.left = randomIntFromInterval(0, 705) + "px"
+    img.style.top = randomIntFromInterval(0, 1073) + "px"
+    img.className = "emoji"
+    div.append(img)
 
-        visibleEmojis++
 
-        await delay(100)
-        
-        img.style.opacity = 0
+    await delay(100)
+    
+    img.style.opacity = 0
 
-        await delay(900)
-        img.remove()
-        visibleEmojis--
-
-    }
+    await delay(900)
+    img.remove()
 }
 
 // Protein Per second

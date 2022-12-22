@@ -122,19 +122,27 @@
         <img src="media/settings.webp" alt="settings">
     </button>
 
-    <settings onclick="closePopup()">
-        
-    </settings>
+    <settings onclick="closePopup()"></settings>
     <popup>
         <div class="big-text">GRAPHICS</div>
         <setting>
             <div class="text">Effects</div>
-            <select id="cars" name="cars">
-                <option value="volvo">Off</option>
-                <option value="saab">Low</option>
-                <option value="fiat">Medium</option>
-                <option value="audi">High</option>
-                <option value="audi">Ultra High</option>
+            <select id="effects" name="effects">
+                <option value="0">Off</option>
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+                <option value="4">Ultra High</option>
+            </select>
+        </setting>
+        <setting>
+            <div class="text">Music</div>
+            <select id="music" name="music">
+                <option value="0">Off</option>
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+                <option value="4">RIP</option>
             </select>
         </setting>
     </popup>
