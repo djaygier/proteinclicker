@@ -46,15 +46,15 @@ if (month == 12) {
 
 products = 
 {
-    "scoop": {name:"Scoop", price:10, amount:0, add:1},
-    "chef": {name:"Chef", price:150, amount:0, add:8},
-    "chickenfarm": {name:"Chicken farm", price:2500, amount:0, add:50},
-    "gym": {name:"Gym", price:10000, amount:0, add:100},
-    "pharmacy": {name:"Pharmacy", price:200000, amount:0, add:1500},
-    "factory": {name:"Whey Factory", price:1000000, amount:0, add:15000},
-    "hospital": {name:"Hospital", price:50000000, amount:0, add:150000},
-    "course": {name:"Sell Courses", price:1500000000, amount:0, add:500000},
-    "survey": {name:"Make Surveys", price:10000000000, amount:0, add:10000000},
+    "scoop": {name:"Scoop", price:10, amount:0, add:1, shiny:false},
+    "chef": {name:"Chef", price:150, amount:0, add:8, shiny:false},
+    "chickenfarm": {name:"Chicken farm", price:2500, amount:0, add:50, shiny:false},
+    "gym": {name:"Gym", price:10000, amount:0, add:100, shiny:false},
+    "pharmacy": {name:"Pharmacy", price:200000, amount:0, add:1500, shiny:false},
+    "factory": {name:"Whey Factory", price:1000000, amount:0, add:15000, shiny:false},
+    "hospital": {name:"Hospital", price:50000000, amount:0, add:150000, shiny:false},
+    "course": {name:"Sell Courses", price:1500000000, amount:0, add:500000, shiny:false},
+    "survey": {name:"Make Surveys", price:10000000000, amount:0, add:10000000, shiny:false},
 }
 
 upgrades = 
@@ -94,6 +94,7 @@ if (cookieDataProducts != "") {
     for (const key in productsJson){
         products[key]["amount"] = productsJson[key]["amount"]
         products[key]["price"] = productsJson[key]["price"]
+        products[key]["shiny"] = productsJson[key]["shiny"]
     }
 
     loadedFromSave = true

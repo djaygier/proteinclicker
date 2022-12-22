@@ -106,6 +106,11 @@ async function loaded() {
         product.id = item
         div.append(product)
 
+        // check if shiny
+        if (getProductData(item, "shiny") == true) {
+            document.getElementById(item).classList.add("shiny")
+        }
+
         var img = document.createElement("img")
         img.alt = item
         img.src = "media/" + item + ".webp"
@@ -138,15 +143,7 @@ async function loaded() {
 
     while (1) {
         await delay(20)
-        protein += (proteinAdd*getProductData("scoop", "amount"))/50
-        totalProtein += (proteinAdd*getProductData("scoop", "amount"))/50
-
-        for (const item in products) {
-            if (item != "scoop") {
-                protein += (getProductData(item, "amount") * getProductData(item, "add"))/50
-                totalProtein += (getProductData(item, "amount")  * getProductData(item, "add"))/50
-            }
-        }
+        protein += proteinPerSecond/50
         
         updateCount()
     }
@@ -301,9 +298,17 @@ function calcPps() {
 
     for (const item in products) {
         if (item == "scoop") {
-            pps += proteinAdd * getProductData(item, "amount")
+            if (getProductData(item, "shiny") == true) {
+                pps += (proteinAdd * getProductData(item, "amount"))*2; // If shiny
+            } else {
+                pps += proteinAdd * getProductData(item, "amount")      // If not shiny
+            }
         } else {
-            pps += getProductData(item, "amount") * getProductData(item, "add")
+            if (getProductData(item, "shiny") == true) {
+                pps += (getProductData(item, "amount") * getProductData(item, "add"))*2 // If shiny
+            } else {
+                pps += getProductData(item, "amount") * getProductData(item, "add") // If not shiny
+            }
         }
     }
 
@@ -428,14 +433,29 @@ function updatePrice(amount) {
     return amount
 }
 
+async function setShiny(product) {
+    products[product]["shiny"] = true
+    document.getElementById(product).classList.add("shiny")
+    await delay(50)
+    document.documentElement.style.setProperty('--shine', "");
+    await delay(50)
+    document.documentElement.style.setProperty('--shine', "slide 3s linear infinite alternate");
+    await delay(100)
+    document.documentElement.style.setProperty('--shine', "slide 3s linear infinite alternate");
+}
+
 
 function buyItem(product) {
 
     // check if player has enough protein
     if (protein >= getProductData(product,"price")) {
 
-        // check if doesnt have one already (Only add upgrade when at 0)
+        // small shiny chance
+        if (randomIntFromInterval(1, 250) == 1) { 
+            setShiny(product)
+        }
 
+        // check if doesnt have one already (Only add upgrade when at 0)
         for (const item in upgrades) {
             if (item.toString().includes(product)) {
                 if (products[product]["amount"] == getUpgradeData(item, "unlockAt")-1) {
