@@ -153,15 +153,18 @@
         </setting>
 
         <setting>
-            <button onclick="saveFile()">Save (file)</button>
+            <div class="text">Save via file</div>
+            <button id="saveFile" onclick="saveFile()">Save file</button>
             <input type="file" id="input"/>
+            <label for="input">Upload file</label>
         </setting>
 
         <setting>
+            <div class="text">Save via google</div>
             <button id="loginGoogle" onclick="loginWithGoogle()">Login</button>
-            <div class="email"></div>
-            <div class="username"></div>
         </setting>
+        <div class="email"></div>
+        <div class="username"></div>
     </popup>
 
 </body>

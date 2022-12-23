@@ -625,9 +625,35 @@ setting {
     flex-direction: row;
     align-items: center;
 }
+
+setting > button {
+    cursor: pointer;
+    right: 10%;
+    position: absolute;
+}
+
+input[type=file] {
+    visibility: hidden;
+}
+
+#saveFile {
+    cursor: pointer;
+    margin-top: -20px;
+}
+
+setting > label {
+    cursor: pointer;
+    margin-bottom:  -20px;
+    padding: 1px 6px 1px 6px;
+    border-radius: 1px;
+    border: 1px black;
+    font-size: 13px;
+    background-color: rgb(240,240,240);
+}
+
 .text {
     position: absolute;
-    left: 20%;
+    left: 20px;
     font-size: 35px;
     font-family: Robinson;
     color: rgb(234, 234, 234);
@@ -635,7 +661,7 @@ setting {
 }
 
 setting > select {
-    right: 30%;
+    right: 10%;
     position: absolute;
 }
 .big-text {
@@ -644,6 +670,20 @@ setting > select {
     font-family: Robinson;
     color: rgb(234, 234, 234);
     margin-bottom: 20px;
+}
+
+.email {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.username {
+    position: absolute;
+    bottom: 20px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 @keyframes slide {
