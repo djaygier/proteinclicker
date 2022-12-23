@@ -9,18 +9,31 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth()
-const database = firebase.database()
+
+const auth = firebase.auth();
+const db = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().languageCode = 'en';
 
-try{
-    var storageRef = firebase.storage().ref();
-}catch{null}
+let username = ""
+let email = ""
 
-const user = firebase.auth().currentUser;
-console.log(user)
+firebase.auth().onAuthStateChanged((user) => {
+if (user) { // User is signed in.
+    username = user.displayName;
+    email = user.email;
+
+    updateProfile(email, username)
+
+    document.getElementById("loginGoogle").innerHTML = "Logout"
+    document.getElementById("loginGoogle").setAttribute("onclick", "logout()")
+    document.getElementById("save").style.visibility = "visible"
+}});
+
+
+
+//
 
 let protein = 0
 let proteinAdd = 1

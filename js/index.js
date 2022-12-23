@@ -587,3 +587,4 @@ function changedSetting(setting) {
         }
     }
 }
+

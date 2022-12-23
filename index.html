@@ -20,9 +20,9 @@
     <meta name="twitter:url" content="https://proteinclicker.com">
     <meta name="twitter:card" content="Click for protein.">
 
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <link rel="icon" type="image/x-icon" href="media/icon.ico?v=2">
 
@@ -45,7 +45,7 @@
         <div class="container">
             <div class="amount">0</div>
             <div class="amount-small">PROTEIN</div>
-            <img src="media/protein.webp" onclick="clickProtein()" id="clicker" alt="protein powder">
+            <img src="media/protein.webp" onclick="clickProtein()" id="clicker" alt="protein powder" draggable="false">
             <div class="cps-amount">0</div>
             <div class="per-second">PER SECOND</div>
         </div>
@@ -120,13 +120,17 @@
             alt="icon">
     </nav>
 
-    <button onclick="openPopup()" id="settings">
+    <button onclick="openPopup()" id="settings" class="left-button">
         <img src="media/settings.webp" alt="settings">
+    </button>
+
+    <button id="save" onclick="saveProgress()" class="left-button">
+        <img src="media/save.webp" alt="save">
     </button>
 
     <settings onclick="closePopup()"></settings>
     <popup>
-        <div class="big-text">GRAPHICS</div>
+        <div class="big-text">SETTINGS</div>
         <setting>
             <div class="text">Effects</div>
             <select onchange="changedSetting('effects')" id="effects" name="effects">
@@ -154,11 +158,9 @@
         </setting>
 
         <setting>
-            <button onclick="loginWithGoogle()">
-                Login
-                <div class="email"></div>
-                <div class="username"></div>
-            </button>
+            <button id="loginGoogle" onclick="loginWithGoogle()">Login</button>
+            <div class="email"></div>
+            <div class="username"></div>
         </setting>
     </popup>
 

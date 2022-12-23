@@ -551,7 +551,7 @@ right bottom {
     }
 }
 
-#settings {
+.left-button {
     position: absolute;
     bottom: 10%;
     left: -45px;
@@ -569,15 +569,25 @@ right bottom {
     cursor: pointer;
 }
 
-#settings:hover {
+.left-button:hover {
     left: -20px;
 }
-#settings img {
+.left-button img {
     padding: 5px;
     height: 40px;
     filter: invert(-1);
 }
 
+#save {
+    visibility: hidden;
+    bottom: 20px;
+}
+
+#save > img {
+    height: 30px;
+    width: 30px;
+    margin-right: 4px;
+}
 settings {
     position: fixed;
     top: 0;
