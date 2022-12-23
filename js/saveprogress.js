@@ -78,3 +78,4 @@ function readFileContent(file) {
         reader.readAsText(file)
     })
 }
+

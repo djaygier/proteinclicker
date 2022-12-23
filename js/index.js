@@ -156,12 +156,12 @@ async function loaded() {
     }
 }
 
+let clearingCookies = false
 async function cookiesLoop() {
-    while(1) {
+    while(!clearingCookies) {
         saveCookies()
         await delay(100)
     }
-
 }
 
 function saveCookies() {

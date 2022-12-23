@@ -61,3 +61,16 @@ function download(filename, text) {
     element.click();
     document.body.removeChild(element);
 }
+
+// function to clear cookies and then reload page
+
+async function clearCookies() {
+    clearingCookies = true
+    await delay(1000)
+    setCookie("protein", "")
+    setCookie("proteinAdd", "")
+    setCookie("products", "")
+    setCookie("upgrades", "")
+    await delay(500)
+    location.reload()
+}
