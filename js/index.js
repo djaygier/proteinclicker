@@ -22,6 +22,7 @@ function upgradeItem(item) {
         upgrades[item]["bought"] = true
         updateCount()
         updatePrice()
+        
     }
 }
 
@@ -440,14 +441,29 @@ function updatePrice(amount) {
 }
 
 async function setShiny(product) {
-    products[product]["shiny"] = true
-    document.getElementById(product).classList.add("shiny")
-    await delay(50)
-    document.documentElement.style.setProperty('--shine', "");
-    await delay(50)
-    document.documentElement.style.setProperty('--shine', "slide 3s linear infinite alternate");
+    if (!products[product]["shiny"]) {
+        products[product]["shiny"] = true
+        document.getElementById(product).classList.add("shiny")
+        await delay(50)
+        document.documentElement.style.setProperty('--shine', "");
+        await delay(50)
+        document.documentElement.style.setProperty('--shine', "slide 3s linear infinite alternate");
+    }
 }
 
+function updateProducts() {
+    for (const item in products) {
+        let unit = formatPrice(products[item]["price"])[1]
+        document.querySelector(`#${item} > div.product-amount`).innerHTML = products[item]["amount"]
+        document.querySelector(`#${item} > div.cost`).innerHTML = formatPrice(products[item]["price"])[0] + `<div class="unit">${unit}</div>`
+        if (products[item]["shiny"]) {
+            document.getElementById(item).classList.add("shiny")
+        } else {
+            document.getElementById(item).classList.remove("shiny")
+
+        }
+    }
+}
 
 function buyItem(product) {
 
@@ -455,7 +471,7 @@ function buyItem(product) {
     if (protein >= getProductData(product,"price")) {
 
         // small shiny chance
-        if (randomIntFromInterval(1, 250) == 1) { 
+        if (randomIntFromInterval(1, 300) == 1) { 
             setShiny(product)
         }
 

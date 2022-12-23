@@ -1,4 +1,26 @@
-// protein background when clicking effect
+const firebaseConfig = {
+    apiKey: "AIzaSyBZDnOhfFt5RuOLSS1xJ0FXdhldG1ysuTw",
+    authDomain: "proteinclicker.firebaseapp.com",
+    projectId: "proteinclicker",
+    storageBucket: "proteinclicker.appspot.com",
+    messagingSenderId: "863208451095",
+    appId: "1:863208451095:web:b014cf3c8a94c186758052",
+    measurementId: "G-D2WQ66GE3X"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth()
+const database = firebase.database()
+const provider = new firebase.auth.GoogleAuthProvider();
+
+firebase.auth().languageCode = 'en';
+
+try{
+    var storageRef = firebase.storage().ref();
+}catch{null}
+
+const user = firebase.auth().currentUser;
+console.log(user)
 
 let protein = 0
 let proteinAdd = 1
