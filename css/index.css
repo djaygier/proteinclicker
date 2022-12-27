@@ -44,6 +44,10 @@ body {
     background: #555;
 }
 
+h1 {
+    margin: 0;
+}
+
 #clicker {
     position: absolute;
     width: 380px;
