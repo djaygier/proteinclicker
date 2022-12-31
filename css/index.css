@@ -44,6 +44,10 @@ body {
     background: #555;
 }
 
+h1 {
+    margin: 0;
+}
+
 #clicker {
     position: absolute;
     width: 380px;
@@ -475,7 +479,7 @@ right top {
     flex-direction: column;
     background-color: var(--background); 
     background-image: none;
-    height: calc(100vh - 280px);
+    height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
     width: 395px;
