@@ -513,7 +513,6 @@ async function enablePhone() {
     document.querySelector("left").style.visibility = "visible"
     document.querySelector("middle").style.visibility = "hidden"
     document.querySelector("right top").style.visibility = "hidden"
-    document.querySelector("right bottom").style.visibility = "hidden"
 }
 
 async function disablePhone() {
@@ -521,7 +520,6 @@ async function disablePhone() {
     document.querySelector("left").style.visibility = "visible"
     document.querySelector("middle").style.visibility = "visible"
     document.querySelector("right top").style.visibility = "visible"
-    document.querySelector("right bottom").style.visibility = "visible"
 }
 
 function checkScreenSize() {
