@@ -442,7 +442,7 @@ top {
     background-repeat: no-repeat;
     background-position: 0 100%;
     width: 100%;
-    height: calc(100vh - 250px);
+    height: calc(100vh - 295px);
     display: flex;
     align-items: center;
     justify-content: center;

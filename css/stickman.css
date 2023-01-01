@@ -5,6 +5,7 @@
     height: 500px;
     display: block;
     position: absolute;
+    margin-bottom: 20px;
 }
 
 .body > * {
