@@ -283,33 +283,29 @@ middle::after {
     background-size: contain;
 }
 
+bar {
+    bottom: 250px;
+    width: 100%;
+    height: 50px;
+    background-image: url("../media/sidesRotated.webp");
+    background-size: contain;
+    display: flex;
+    position: absolute;
+}
+
 middle bottom {
     flex-wrap: wrap;
     display: flex;
     width: 100%;
     height: 250px;
-    border-top: 5px solid var(--main);
     bottom: 0;
     image-rendering:crisp-edges;
     background: url("../media/upgradesbg.webp") center center;
     background-size: cover;
     position: absolute;
+    overflow-y: scroll;
 }
 
-middle bottom::after {
-    top: -30px;
-    image-rendering:-moz-crisp-edges;
-    filter: contrast(110%);
-    content: "";
-    position: absolute;
-    left: 0;
-    z-index: 2;
-    display: block;
-    height: 40px;
-    width: 100%;
-    background-image: url("../media/sidesRotated.webp");
-    background-size: contain;
-}
 
 upgrade {
     background-color: rgb(0, 0, 0);
@@ -327,7 +323,7 @@ upgrade {
     position: relative;
     margin: 30px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
     border-radius: 100px;
     box-shadow: -4px 4px 4px rgb(0, 0, 0, 0.5);
     transition: 0.2s;
@@ -554,7 +550,7 @@ right bottom {
         bottom: 205px !important;
     }
 }
-
+/* settings */
 .left-button {
     position: absolute;
     bottom: 10%;
@@ -581,6 +577,17 @@ right bottom {
     height: 40px;
     filter: invert(-1);
 }
+.left-button:hover img{
+    animation: rotate 5s linear infinite;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 #save {
     visibility: hidden;
@@ -592,6 +599,7 @@ right bottom {
     width: 30px;
     margin-right: 4px;
 }
+
 settings {
     position: fixed;
     top: 0;
@@ -614,7 +622,7 @@ popup {
     height: 400px;
     background-color: var(--background);
     border-radius: 20px;
-    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -622,58 +630,66 @@ popup {
 }
 
 setting {
-    background-color: rgb(62, 62, 62);
+    position: relative;
     width: 120%;
     height: 60px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: rgb(38, 38, 38);
+    margin-top: 5px;
+}
+
+setting:hover{
+    background-color: #018991;
 }
 
 setting > button {
+    height: 35px;
     cursor: pointer;
     right: 10%;
     position: absolute;
 }
-
-input[type=file] {
-    visibility: hidden;
+setting > select {
+    right: 10%;
+    position: absolute;
 }
 
-#saveFile {
-    cursor: pointer;
-    margin-top: -20px;
+label[for="input"]{
+    padding: 5px 6px 5px 6px;
 }
 
 setting > label {
+    text-align: center;
     cursor: pointer;
-    margin-bottom:  -20px;
-    padding: 1px 6px 1px 6px;
-    border-radius: 1px;
-    border: 1px black;
-    font-size: 13px;
-    background-color: rgb(240,240,240);
+    margin-bottom: -30px;
+    margin-right: 36px;
 }
 
 .text {
     position: absolute;
     left: 20px;
-    font-size: 35px;
-    font-family: Robinson;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
     color: rgb(234, 234, 234);
-    margin-bottom: 5px;
+    letter-spacing: 1px; 
 }
 
-setting > select {
-    right: 10%;
-    position: absolute;
-}
 .big-text {
     transform: scale(1.5, 1);
     font-size: 30px;
     font-family: Robinson;
     color: rgb(234, 234, 234);
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+popup hr {
+    width: 40px;
+    margin: 0;
+    margin-bottom: 10px;
 }
 
 .email {
@@ -704,6 +720,15 @@ setting > select {
         top: 0;
     }
 }
+#performance{
+    position: absolute;
+    bottom: 15px;
+    font-size: 13px;
+    color: #838181;
+    font-family: Arial;
+    user-select: none; 
+}
+/* settings */
 
 .shiny::before {
     filter: blur(3px);
@@ -742,3 +767,64 @@ setting > select {
 .shiny > img {
     filter: saturate(150%) brightness(120%) hue-rotate(20deg);
 }
+
+#resetData {
+    background-color: rgb(194, 79, 79);
+}
+
+select, #saveFile, label[for="input"], setting button{
+    background-color:#434242;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 13px;
+    height: 35px;
+}
+#saveFile:hover, label[for="input"]:hover, setting button:hover{
+    transform: scale(105%);
+    transition: 0.2s;
+}
+
+.fileButtons {
+    display: flex;
+    height: auto;
+    width: 100px;
+    flex-direction: row;
+    position: absolute;
+    right: 10%;
+}
+
+input[type=file] {
+    margin-top: 20px;
+    visibility: hidden;
+}
+
+label[for="input"] {
+    background-image: url("../media/upload.webp");
+    background-size: 30px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    padding: 0;
+}
+
+#saveFile {
+    background-image: url("../media/save.webp");
+    background-size: 30px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    left: 0;
+}
+
