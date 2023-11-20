@@ -1,3 +1,5 @@
+import { provider, db, auth } from '../js/index.js';
+
 let userdata = null;
 
 const loginWithGoogle = async () => {
@@ -20,8 +22,8 @@ const loginWithGoogle = async () => {
 
       document.getElementById("loginGoogle").innerHTML = "Logout";
       document
-        .getElementById("loginGoogle")
-        .setAttribute("onclick", "logout()");
+        .getElementById("loginGoogle").addEventListener("onclick", () => logout());
+
       document.getElementById("save").style.visibility = "visible";
     })
     .catch((error) => {
@@ -35,9 +37,8 @@ const logout = () => {
     .signOut()
     .then(() => {
       document.getElementById("loginGoogle").innerHTML = "Login";
-      document
-        .getElementById("loginGoogle")
-        .setAttribute("onclick", "loginWithGoogle()");
+      document.getElementById("loginGoogle").addEventListener("onclick", () => loginWithGoogle())
+
       document.getElementById("save").style.visibility = "hidden";
       setCookie("uid", "");
     })
@@ -119,4 +120,17 @@ const checkAnimation = async () => {
   document.querySelector("#save > img").src = "media/check.webp";
   await delay(1700);
   document.querySelector("#save > img").src = "media/save.webp";
+};
+
+
+export {
+  userdata,
+  loginWithGoogle,
+  logout,
+  updateProfile,
+  addUserToDB,
+  getUserData,
+  cooldown,
+  saveProgress,
+  checkAnimation,
 };

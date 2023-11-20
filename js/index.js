@@ -1,13 +1,154 @@
+import {
+  delay,
+  setCookie,
+  getCookie,
+  randomIntFromInterval,
+  getProductData,
+  getUpgradeData,
+  openPopup,
+  closePopup,
+  checkScreenSize,
+  onLoadSave,
+  clearCookies,
+} from '../js/functions.js';
+
+import {
+  loginWithGoogle,
+  logout,
+  updateProfile,
+  saveProgress,
+} from '../js/firebase.js';
+
+import '../js/firebase.js'
+import { products, upgrades } from '../js/values.js';
+
+let cookieDataProducts = getCookie("products");
+let cookieDataUpgrades = getCookie("upgrades");
+let cookieDataProtein = getCookie("protein");
+let cookieDataProteinAdd = getCookie("proteinAdd");
+
+let protein = 0;
+let proteinAdd = 1;
+let proteinPerSecond = 0;
+let animationPerSecond = 0;
+let totalProtein = 1000;
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBZDnOhfFt5RuOLSS1xJ0FXdhldG1ysuTw",
+  authDomain: "proteinclicker.firebaseapp.com",
+  projectId: "proteinclicker",
+  storageBucket: "proteinclicker.appspot.com",
+  messagingSenderId: "863208451095",
+  appId: "1:863208451095:web:b014cf3c8a94c186758052",
+  measurementId: "G-D2WQ66GE3X",
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export { provider, db, auth }
+
+firebase.auth().languageCode = "en";
+
+let username = "";
+let email = "";
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in.
+    username = user.displayName;
+    email = user.email;
+
+    updateProfile(email, username);
+
+    document.getElementById("loginGoogle").innerHTML = "Logout";
+    document.getElementById("loginGoogle").addEventListener("onclick", () => logout())
+
+    document.getElementById("save").style.visibility = "visible";
+  }
+});
+
+//
+
+
+
+const r = document.documentElement;
+
+let loadedFromSave = false;
+
+const d = new Date();
+let month = d.getMonth() + 1;
+let day = d.getDate();
+
+
+
+/// Settings
+// Audio
+const music = new Audio("media/music.mp3");
+music.autoplay = true;
+music.loop = true;
+music.volume = 0.1;
+
+// Effects
+let effects = 2;
+
+checkScreenSize();
+
+addEventListener("resize", () => {
+  checkScreenSize();
+});
+
+if (month == 12) {
+  document.getElementsByClassName("hat")[0].style.backgroundImage =
+    "url('../media/santahat.webp')";
+}
+
+
+if (cookieDataProducts != "") {
+  let productsJson = JSON.parse(cookieDataProducts);
+
+  for (const key in productsJson) {
+    products[key]["amount"] = productsJson[key]["amount"];
+    products[key]["price"] = productsJson[key]["price"];
+    products[key]["shiny"] = productsJson[key]["shiny"];
+  }
+
+  loadedFromSave = true;
+}
+
+if (cookieDataUpgrades != "") {
+  let upgradesJson = JSON.parse(cookieDataUpgrades);
+
+  for (const key in upgradesJson) {
+    upgrades[key]["bought"] = upgradesJson[key]["bought"];
+    upgrades[key]["added"] = upgradesJson[key]["added"];
+
+    if (upgrades[key]["bought"] == true) {
+      products[upgrades[key]["upgrade"]]["add"] *= upgrades[key]["multiplier"];
+    }
+  }
+
+  loadedFromSave = true;
+}
+
+if (cookieDataProtein != "") {
+  protein = parseFloat(cookieDataProtein);
+  loadedFromSave = true;
+}
+
+if (cookieDataProteinAdd != "") {
+  proteinAdd = parseFloat(cookieDataProteinAdd);
+  loadedFromSave = true;
+}
+
+
 const addEvent = (item) => {
-  document
-    .getElementById(item)
-    .setAttribute("onmousedown", "mouseDownAnimation('" + item + "')");
-  document
-    .getElementById(item)
-    .setAttribute("onmouseup", "mouseUpAnimation('" + item + "')");
-  document
-    .getElementById(item)
-    .setAttribute("onmouseleave", "mouseUpAnimation('" + item + "')");
+  document.getElementById(item).addEventListener("mousedown", () => mouseDownAnimation(item));
+  document.getElementById(item).addEventListener("mouseup", () => mouseUpAnimation(item));
+  document.getElementById(item).addEventListener("mouseleave", () => mouseUpAnimation(item));
 };
 
 const upgradeItem = (item) => {
@@ -55,9 +196,10 @@ const addUpgrade = (item) => {
   let div = document.querySelector("bottom");
 
   let upgrade = document.createElement("upgrade");
-  upgrade.setAttribute("onclick", `upgradeItem('${item}')`);
+  upgrade.addEventListener("click", () => upgradeItem(item));
+
   upgrade.id = item;
-  div.append(upgrade);
+  div.appendChild(upgrade);
 
   let price = document.createElement("div");
   price.className = "price";
@@ -174,7 +316,7 @@ const saveCookies = (item) => {
   setCookie("proteinAdd", proteinAdd.toString());
 };
 
-firstClick = false;
+let firstClick = false;
 
 const clickProtein = async () => {
   if (!firstClick) {
@@ -226,15 +368,15 @@ const animateParticles = async () => {
 
     particle.className = "particle";
 
-    particlesWidth =
+    const particlesWidth =
       document.getElementsByClassName("particles")[0].offsetWidth;
-    particlesHeight =
+    const particlesHeight =
       document.getElementsByClassName("particles")[0].offsetHeight;
 
-    xOffset = randomIntFromInterval(0, particlesWidth);
-    yOffset = randomIntFromInterval(0, particlesHeight);
+    const xOffset = randomIntFromInterval(0, particlesWidth);
+    const yOffset = randomIntFromInterval(0, particlesHeight);
 
-    size = randomIntFromInterval(5, 15);
+    const size = randomIntFromInterval(5, 15);
 
     particle.style.width = size + "px";
     particle.style.height = size + "px";
@@ -283,7 +425,7 @@ const animateBackground = async () => {
   let img = document.createElement("img");
   img.src = "../media/muscle.webp";
   img.style.transform = "rotate(" + randomIntFromInterval(0, 360) + "deg)";
-  widthRandom = randomIntFromInterval(30, 90);
+  const widthRandom = randomIntFromInterval(30, 90);
   img.style.width = widthRandom + "px";
 
   img.style.left = randomIntFromInterval(0, 705) + "px";
@@ -301,7 +443,7 @@ const animateBackground = async () => {
 
 // Protein Per second
 const calcPps = () => {
-  pps = 0;
+  let pps = 0;
 
   for (const item in products) {
     if (item == "scoop") {
@@ -527,48 +669,6 @@ const buyItem = (product) => {
   updateCount();
 };
 
-const enablePhone = async () => {
-  selectNav("home-icon", "left");
-  document.querySelector("left").style.width = "100%";
-  document.querySelector("left").style.visibility = "visible";
-  document.querySelector("middle").style.visibility = "hidden";
-  document.querySelector("right top").style.visibility = "hidden";
-};
-
-const disablePhone = async () => {
-  document.querySelector("left").setAttribute("style", "");
-  document.querySelector("left").style.visibility = "visible";
-  document.querySelector("middle").style.visibility = "visible";
-  document.querySelector("right top").style.visibility = "visible";
-};
-
-const checkScreenSize = () => {
-  const screenWidth = screen.width;
-
-  if (screenWidth <= 1280) {
-    enablePhone();
-    document.getElementById("phone").href = "css/phone.css";
-    document.querySelector("nav").style.visibility = "visible";
-  } else {
-    disablePhone();
-    document.getElementById("phone").href = "";
-    document.querySelector("nav").style.visibility = "hidden";
-  }
-
-  // particle pos
-  const width = document.querySelector("left").offsetWidth;
-  const height = document.querySelector("left").offsetHeight;
-
-  document.documentElement.style.setProperty(
-    "--particle-pos-top",
-    height / 2 + "px"
-  );
-  document.documentElement.style.setProperty(
-    "--particle-pos-left",
-    width / 2 + "px"
-  );
-};
-
 const selectNav = (id, query) => {
   // Remove the "enable" class from all icons
   document.getElementById("gym-icon").classList.remove("enable");
@@ -610,3 +710,59 @@ const changedSetting = (setting) => {
     }
   }
 };
+
+
+// On loaded
+loaded();
+cookiesLoop();
+onLoadSave();
+
+// Add event listeners (fix for modules change giving erros :) )
+
+const clickerElement = document.getElementById("clicker");
+clickerElement.addEventListener("click", clickProtein);
+
+document.getElementById("home-icon").addEventListener("click", () => selectNav("home-icon", "left"));
+document.getElementById("gym-icon").addEventListener("click", () => selectNav("gym-icon", "middle"));
+document.getElementById("upgrade-icon").addEventListener("click", () => selectNav("upgrade-icon", "right top"));
+
+document.getElementById("settings").addEventListener("click", openPopup);
+document.getElementById("save").addEventListener("click", saveProgress);
+
+document.querySelector("settings").addEventListener("click", closePopup);
+
+document.getElementById("effects").addEventListener("change", () => changedSetting("effects"));
+document.getElementById("music").addEventListener("change", () => changedSetting("music"));
+
+document.getElementById("saveFile").addEventListener("click", saveFile);
+document.getElementById("loginGoogle").addEventListener("click", loginWithGoogle);
+document.getElementById("resetData").addEventListener("click", clearCookies);
+
+
+// Omdat ik in deze code geen rest, spread heb hoeven te gebruiken zal ik hier stukje code maken
+// zodat ik kan laten zien dat ik weet hoe rest, spread operators en destructuring werken.
+
+const voorbeeldArray1 = ['voorbeeld1', 'voorbeeld2', 'voorbeeld3'];
+const [eerste, tweede, ...rest] = voorbeeldArray1;
+
+console.log(eerste); // de eerste van de array in de vorm van wat er in de array zit, string in dit geval. "voorbeeld1"
+console.log(tweede); // de tweede van de array in de vorm van wat er in de array zit, string in dit geval. "voorbeeld2"
+console.log(rest); // de rest van de array in de vorm van een array "['voorbeeld3']"
+
+const persoon = { naam: 'Djay', leeftijd: 17, locatie: 'Maassluis' };
+const { naam, ...restVanPersoon } = persoon;
+
+console.log(naam); // Hier geeft hij dus Djay, omdat hij de string van de value of field "naam" pakt. "Djay"
+console.log(restVanPersoon); // De rest van het object "{ leeftijd: 17, locatie: 'Maassluis' }"
+
+const voorbeeldArray2 = ['voorbeeld4', 'voorbeeld5'];
+const voorbeeldArrayVolledig = [...voorbeeldArray1, ...voorbeeldArray2];
+
+console.log(voorbeeldArrayVolledig); // Beide arrays gecombineerd! :D voorbeeldArray1 en voorbeeldArray2 is nu beide 1 array 
+
+const extraObject = { vermogen: 9123890943, inkomen: 923820 };
+const uitgebreiderPersoon = { ...persoon, ...extraObject };
+
+console.log(uitgebreiderPersoon); // Beide objecten gecombineerd ook, vermogen en inkomen is nu toegevoegd aan naam, leeftijd en locatie allemaal in 1 object
+
+///////////////////////////////
